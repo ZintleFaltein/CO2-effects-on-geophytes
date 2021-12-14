@@ -1,0 +1,73 @@
+install.packages("reshape", dependencies=T)
+library(reshape)
+
+x <- rnorm(30)
+y <- rnorm(30)+1
+z <- rnorm(30)+0.5
+
+data.1 <- data.frame(x, y, z)
+data.2 <- melt(data.1)
+linear.model <- lm(value~variable, data=data.2)
+anova(linear.model)
+
+# Analysis of Variance Table
+# Response: value
+#           Df Sum Sq Mean Sq F value   Pr(>F)   
+# variable   2 10.942  5.4710  5.8628 0.004087 **
+# Residuals 87 81.185  0.9332     
+
+TukeyHSD(aov(linear.model))
+
+# Tukey multiple comparisons of means
+# 95% family-wise confidence level
+# Fit: aov(formula = linear.model)
+# $variable
+# diff        lwr        upr     p adj
+# y-x  0.8344105  0.2396705 1.42915051 0.0034468
+# z-x  0.2593612 -0.3353788 0.85410126 0.5539050
+# z-y -0.5750493 -1.1697893 0.01969078 0.0602975
+
+boxplot(value~variable, data=data.2)
+
+data.2$posthoc[data.2$variable == "x"] <- "a"
+data.2$posthoc[data.2$variable == "y"] <- "b"
+data.2$posthoc[data.2$variable == "z"] <- "a,b"
+
+library(ggplot2)
+
+#####First just plot the means for each of the three groups
+qplot(data=data.2,
+      x = variable,
+      y = value,
+      stat = "summary",
+      fun.y = "mean",
+      geom = c("point")
+)
+
+######Next, add the text labels:
+qplot(data=data.2,
+      x = variable,
+      y = value,
+      stat = "summary",
+      fun.y = "mean",
+      label = posthoc,
+      vjust = -12,
+      geom = c("point", "text")
+)
+
+######Finally, add the boxplot geom and clean it up a little:
+qplot(data=data.2,
+      x = variable,
+      y = value,
+      stat = "summary",
+      fun.y = "mean",
+      label = posthoc,
+      vjust = -12,
+      ylim = c(-1, 3.5),
+      geom = c("point", "text"),
+      main="ggplot2 ANOVA boxplot"
+) + 
+  geom_boxplot(aes(fill=posthoc)) + 
+  theme_bw()
+
+text(x=1:3, y=3, c("a", "b", "b, c"))
