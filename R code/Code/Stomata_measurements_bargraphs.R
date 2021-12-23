@@ -8,9 +8,11 @@ library(gridExtra)
 library(tidyverse)
 library(readr)
 
-stomatal_measurements <- read_delim("Data/Oxalis combined stomatal measurements.csv", ";", escape_double = FALSE, trim_ws = TRUE)
+stomatal_measurements <- read_delim("C:/Users/User/Documents/GitHub/CO2-effects-on-geophytes/R code/Data/Oxalis combined stomatal measurements.csv", 
+                                    delim = ";", escape_double = FALSE, trim_ws = TRUE)
 
-theme <- theme(panel.grid.minor = element_blank(),
+# create a custom theme for plots
+themed <- theme(panel.grid.minor = element_blank(),
                panel.grid.major = element_blank(),
                panel.background=element_rect(fill="white"),
                axis.line=element_line("black"),
@@ -60,37 +62,35 @@ summary_size = size %>%
 
 # Plot barplots for each trait
 size_bar = ggplot(summary_size, aes(x = CO2, y = mean, fill = Nutrients)) +
-  geom_bar(position=position_dodge(),stat="identity", width = 0.5) + geom_errorbar(aes(x=CO2, ymin=mean-se, ymax=mean+se), 
-                                             width=0.2, colour="black", alpha=0.9, size=1.0, position=position_dodge(.5))
-# Change axis labels
-size_bar = size_bar + labs(x=expression(NULL),
-                           y=expression(Stomatal~size~(mu~m))) + scale_fill_manual(values=c('black','lightgray'))
-
-# remove legend
-size_bar = size_bar + guides(fill=FALSE) + theme + theme(axis.ticks.x = element_blank(),
-                                                         axis.text.x = element_blank())
+  geom_bar(position=position_dodge(),stat="identity", width = 0.5) + 
+  geom_errorbar(aes(x=CO2, ymin=mean-se, ymax=mean+se), 
+                width=0.2, colour="black", alpha=0.9, size=1.0, 
+                position=position_dodge(.5)) + 
+  labs(x=expression(NULL), y=expression(Stomatal~size~(mu~m))) + 
+  scale_fill_manual(values=c('black','lightgray')) + 
+  guides(fill=FALSE) + 
+  themed + 
+  theme(axis.ticks.x = element_blank(),axis.text.x = element_blank())
   
 dense_bar = ggplot(summary_dense, aes(CO2, mean, fill = Nutrients)) +
-  geom_bar(position=position_dodge(), stat="identity", width = 0.5) + geom_errorbar(aes(x=CO2, ymin=mean-se, ymax=mean+se), 
-                                            width=0.2, colour="black", alpha=0.9, size=1.0, position=position_dodge(.5)) 
-# Change axis labels
-dense_bar = dense_bar + labs(x=expression(NULL),
-                             y=expression(Stomatal~density~(mm^-2))) + 
+  geom_bar(position=position_dodge(), stat="identity", width = 0.5) + 
+  geom_errorbar(aes(x=CO2, ymin=mean-se, ymax=mean+se),
+                width=0.2, colour="black", alpha=0.9, size=1.0, 
+                position=position_dodge(.5)) + 
+  labs(x=expression(NULL),y=expression(Stomatal~density~(mm^-2))) + 
   scale_fill_manual(values=c('black','lightgray')) +
-  theme(legend.position = c(0.8, 0.8))
-
-# remove legend
-dense_bar = dense_bar + theme + theme(axis.ticks.x = element_blank(),
-                                                           axis.text.x = element_blank())
+  themed +
+  theme(legend.position = c(0.8, 0.8)) + 
+  theme(axis.ticks.x = element_blank(),axis.text.x = element_blank())
 
 index_bar = ggplot(summary_index, aes(CO2, mean, fill = Nutrients)) +
-  geom_bar(position=position_dodge(), stat="identity", width = 0.5) + geom_errorbar(aes(x=CO2, ymin=mean-se, ymax=mean+se), 
-                                            width=0.2, colour="black", alpha=0.9, size=1.0, position=position_dodge(.5)) 
-# Change axis labels
-index_bar = index_bar + labs(x=expression(Growth~CO["2"]~~(ppm)),
-                             y=expression('Stomatal index (%)')) + scale_fill_manual(values=c('black','lightgray'))
-
-# remove legend
-index_bar = index_bar + guides(fill=FALSE) + theme
+  geom_bar(position=position_dodge(), stat="identity", width = 0.5) + 
+  geom_errorbar(aes(x=CO2, ymin=mean-se, ymax=mean+se),
+                width=0.2, colour="black", alpha=0.9, size=1.0, 
+                position=position_dodge(.5)) + 
+  labs(x=expression(Growth~CO["2"]~~(ppm)),y=expression('Stomatal index (%)')) + 
+  scale_fill_manual(values=c('black','lightgray')) + 
+  guides(fill=FALSE) + 
+  themed
 
 grid.arrange(size_bar, dense_bar, index_bar, nrow = 3)
