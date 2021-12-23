@@ -8,7 +8,8 @@ library(gridExtra)
 library(tidyverse)
 library(readr)
 
-stomatal_measurements <- read_delim("C:/Users/User/Documents/GitHub/CO2-effects-on-geophytes/R code/Data/Oxalis combined stomatal measurements.csv", 
+# load data from github
+stomatal_measurements <- read_delim("https://raw.githubusercontent.com/ZintleFaltein/CO2-effects-on-geophytes/master/R%20code/Data/Oxalis%20combined%20stomatal%20measurements.csv?token=AOMLEIAJIVDTF3CRVXZQRUDBYTGZY", 
                                     delim = ";", escape_double = FALSE, trim_ws = TRUE)
 
 # create a custom theme for plots

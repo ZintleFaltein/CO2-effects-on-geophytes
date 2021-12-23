@@ -7,7 +7,7 @@ library(tidyverse)
 library(readr)
 library(curl)
 
-returns <- read_delim("C:/Users/User/Documents/GitHub/CO2-effects-on-geophytes/R code/Data/Return rates by veg type.csv", 
+returns <- read_delim("https://raw.githubusercontent.com/ZintleFaltein/CO2-effects-on-geophytes/master/R%20code/Data/Return%20rates%20by%20veg%20type.csv?token=AOMLEIDI7IBQR5ALPBK42CLBYTG7I", 
                                        delim = ";", escape_double = FALSE, trim_ws = TRUE)
 
 returns
