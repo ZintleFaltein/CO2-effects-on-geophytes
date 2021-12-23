@@ -1,5 +1,4 @@
 Vegetation Type;BOUT ID;Date;Start;Species;Total grams per 30 min bout;Foragers;Grams/Forager Hr;Kcal/g;Source;n;return(400);return(300);return(240);return(180)
-;;;;;;;;;;;;cal hr-1;cal hr-1;cal hr-1
 Dune fynbos-thicket mos.;4;41986;0,478472222;Carpobrotus acinaciformis;342;2;341.5;0.6408;Sp;1;219;167,2148922;132,1155943;93,99512162
 Dune fynbos-thicket mos.;5;41986;0,509027778;Carpobrotus acinaciformis;467;2;466.8;0.6408;Sp;1;299;228,2979578;180,3769986;128,3312391
 Dune fynbos-thicket mos.;9;41987;0,568055556;Carpobrotus acinaciformis;188;2;187.9;0.6408;Sp;1;120;91,62459844;72,39210647;51,50417623
