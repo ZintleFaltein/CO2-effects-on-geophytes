@@ -1,0 +1,32 @@
+---
+title: "Oxalis"
+author: "Zintle"
+date: "01/11/2021"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+source('C:/Users/User/OneDrive - Rhodes University/Documents/Thesis/R code/Code/Stomatal density v stomatal size.R', local = knitr::knit_global())
+source("C:/Users/User/OneDrive - Rhodes University/Documents/Thesis/R code/Code/Stomata_measurements_bargraphs.R", local = knitr::knit_global())
+source("C:/Users/User/OneDrive - Rhodes University/Documents/Thesis/R code/Code/Epidermal_measurements_barplots_stacked_errorbars.R")
+```
+
+## R Markdown
+
+```{r echo=FALSE, fig.height=8, message=FALSE, warning=FALSE}
+grid.arrange(size_bar, dense_bar, index_bar, nrow = 3)
+```
+
+```{r pressure, echo=FALSE, fig.height=8, fig.width=10, message=FALSE, warning=FALSE}
+stomatal_plot
+```
+
+```{r echo=FALSE, fig.height=8,fig.width=10, message=FALSE, warning=FALSE}
+leaf_stack
+```
