@@ -12,13 +12,14 @@ library(ggridges)
 # returns <- read_delim("https://raw.githubusercontent.com/ZintleFaltein/CO2-effects-on-geophytes/master/R%20code/Data/Foraging%20return%20rates.csv?token=AOMLEIHYF2HMAOH6ZEDAGTLBYTLX6", 
 #                                        delim = ";", escape_double = FALSE, trim_ws = TRUE)
 
-returns <- read_delim("https://raw.githubusercontent.com/ZintleFaltein/CO2-effects-on-geophytes/master/R%20code/Data/Return%20rates%20by%20veg%20type.csv?token=AOMLEIGH6CDZTK7DO4CHJ6LB2QAQK",
+returns <- read_delim("https://raw.githubusercontent.com/ZintleFaltein/CO2-effects-on-geophytes/master/R%20code/Data/Return%20rates%20by%20veg%20type.csv?token=AOMLEIAEMBMUQDJ3HV6ET4DB2XDNE",
                       delim = ';')
 
 View(returns)
-glimpse(returns)
 
 returns$Cal_per_hr = as.numeric(sub("," , ".", returns$Cal_per_hr))
+
+glimpse(returns)
 
 themed <- theme(panel.grid.minor = element_blank(),
                panel.grid.major = element_blank(),
@@ -38,12 +39,22 @@ themed <- theme(panel.grid.minor = element_blank(),
 # returns <- melt(returns, id.vars = c('veg_type', 'bout_id'),
 #                 measure.vars = c('400', '300', '240', '180'))
 
+
+if (returns$`Vegetation Type` == 'Dune fynbos-thicket mos.'){
+  
+}
+
+# get the 90% quantile of calorific values
+returns %>%
+  filter(Cal_per_hr >= quantile(returns$Cal_per_hr, .90)) 
+
 box_calories <- returns %>%
   #filter(Cal_per_hr >= 1000) %>%
-  filter(`Vegetation Type` %in% c('Dune fynbos-thicket mos.', 'Sand fynbos', 'Riparian')) %>%
+  filter(Cal_per_hr > quantile(returns$Cal_per_hr, .90)) %>%
+  #filter(`Vegetation Type` %in% c('Dune fynbos-thicket mos.', 'Sand fynbos', 'Riparian')) %>%
   ggplot(aes(x=CO2, y = Cal_per_hr, group = CO2)) + 
   geom_boxplot(outlier.colour = 'red') +
-  facet_wrap(~`Vegetation Type`) +
+ # facet_wrap(~`Vegetation Type`) +
   themed +
   labs(x=expression(Growth~CO["2"]~~(ppm)), y = 'Return rates (Cal/hr)')
 
@@ -53,7 +64,8 @@ box_calories
 # of calories per hour harvested
 ridge_calories <- returns %>%
   #filter(Cal_per_hr >= 500) %>%
-  filter(`Vegetation Type` %in% c('Dune fynbos-thicket mos.', 'Sand fynbos', 'Riparian')) %>%
+  #filter(`Vegetation Type` %in% c('Dune fynbos-thicket mos.', 'Sand fynbos', 'Riparian')) %>%
+  filter(Cal_per_hr > quantile(returns$Cal_per_hr, .90)) %>%
   ggplot(aes(x=Cal_per_hr, y=`Vegetation Type`)) +
   geom_density_ridges() +
   theme_ridges() +
