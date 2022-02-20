@@ -8,12 +8,13 @@ library(readr)
 library(curl)
 library(reshape)
 library(ggridges)
+library(lubridate)
 
-# returns <- read_delim("https://raw.githubusercontent.com/ZintleFaltein/CO2-effects-on-geophytes/master/R%20code/Data/Foraging%20return%20rates.csv?token=AOMLEIHYF2HMAOH6ZEDAGTLBYTLX6", 
-#                                        delim = ";", escape_double = FALSE, trim_ws = TRUE)
+Foraging_return_rates <- read_delim("C:/Users/User/Documents/GitHub/CO2-effects-on-geophytes/Data/Foraging return rates.csv", 
+                                    delim = ";", escape_double = FALSE, trim_ws = TRUE)
 
-returns <- read_delim("https://raw.githubusercontent.com/ZintleFaltein/CO2-effects-on-geophytes/master/R%20code/Data/Return%20rates%20by%20veg%20type.csv?token=AOMLEIAEMBMUQDJ3HV6ET4DB2XDNE",
-                      delim = ';')
+#returns <- read_delim("https://raw.githubusercontent.com/ZintleFaltein/CO2-effects-on-geophytes/master/R%20code/Data/Return%20rates%20by%20veg%20type.csv?token=AOMLEIAEMBMUQDJ3HV6ET4DB2XDNE",
+ #                     delim = ';')
 
 View(returns)
 
@@ -39,10 +40,6 @@ themed <- theme(panel.grid.minor = element_blank(),
 # returns <- melt(returns, id.vars = c('veg_type', 'bout_id'),
 #                 measure.vars = c('400', '300', '240', '180'))
 
-
-if (returns$`Vegetation Type` == 'Dune fynbos-thicket mos.'){
-  
-}
 
 # get the 90% quantile of calorific values
 returns %>%
@@ -74,3 +71,26 @@ ridge_calories <- returns %>%
   themed
 
 ridge_calories
+
+################################################################################
+# FORAGING SEASONALITY
+################################################################################
+
+# correct the Date data type
+Foraging_return_rates$Date <- dmy(Foraging_return_rates$Date)
+
+# extract the months
+Foraging_return_rates$month <- month(Foraging_return_rates$Date)
+Foraging_return_rates$year <- year(Foraging_return_rates$Date)
+
+Foraging_return_rates <- Foraging_return_rates %>%
+  mutate(season = case_when(month <= 2 | month == 12 ~ 'Summer',
+                            month >= 3 & month <= 5 ~ 'Autumn',
+                            month >= 6 & month <= 8 ~ 'Winter',
+                            month >= 9 & month <= 11 ~ 'Spring'))
+
+# foraging average 
+Foraging_return_rates %>%
+  group_by(year, season) %>%
+  summarise(x_bar = mean(`return(400)`)) %>%
+  ggplot(aes(x = season, y = x_bar)) + geom_col()
