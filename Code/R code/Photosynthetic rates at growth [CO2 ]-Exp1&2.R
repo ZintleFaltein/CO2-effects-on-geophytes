@@ -5,6 +5,7 @@ library(ggplot2)
 library(ggpubr)
 library(dplyr)
 library(readr)
+library(gridExtra)
 
 photo_stomatal_lim <- read_delim("C:/Users/User/Documents/GitHub/CO2-effects-on-geophytes/Data/Photosynthetic rates at the growth CO2-Exp1&2.csv", 
                                                             delim = ";", escape_double = FALSE, trim_ws = TRUE) %>%
@@ -23,6 +24,9 @@ themed <- theme(panel.grid.minor = element_blank(),
                 strip.background=element_rect(fill="grey 80",colour="black"),
                 strip.text.x = element_text(size = 7))
 
+##############################################################################
+##                           STOMTAL LIMITATION                             ##
+##############################################################################
 stomatal_lim_opc = photo_stomatal_lim %>%
   filter(comp == 'Stomatal limitation',
          Species == 'O.pes-caprae') %>%
@@ -32,15 +36,16 @@ stomatal_lim_opc = photo_stomatal_lim %>%
     mean=mean(response),
     sd=sd(response)
   ) %>%
-  mutate( se=sd/sqrt(n))  %>%
-  mutate( ic=se * qt((1-0.05)/2 + .5, n-1)) %>%
+  mutate(se=sd/sqrt(n))  %>%
+  mutate(ic=se * qt((1-0.05)/2 + .5, n-1)) %>%
   ggplot() +
   geom_bar(color = 'black', fill = 'black', 
            aes(x=CO2, y=mean), 
            stat="identity", width = 0.6) +
   geom_errorbar(aes(x=CO2, ymin=mean-se, ymax=mean+se), width=0.1) +
   facet_wrap(~Species) +
-  labs(x = Growth~CO["2"]~~(ppm), y = 'Stomatal limitation (%)' ) +
+  labs(x = Growth~CO["2"]~~(ppm), y = 'Stomatal limitation (%)') +
+  theme(text = element_text(size=8)) +
   themed
 
 stomatal_lim_op = photo_stomatal_lim %>%
@@ -52,30 +57,74 @@ stomatal_lim_op = photo_stomatal_lim %>%
     mean=mean(response),
     sd=sd(response)
   ) %>%
-  mutate( se=sd/sqrt(n))  %>%
-  mutate( ic=se * qt((1-0.05)/2 + .5, n-1)) %>%
-  ggplot() +
+  mutate(se=sd/sqrt(n))  %>%
+  mutate(ic=se * qt((1-0.05)/2 + .5, n-1)) %>%
+  ggplot(aes(x=CO2, y=mean, fill = Nutrients)) +
   geom_bar(color = 'black',  
-           aes(x=CO2, y=mean, fill = Nutrients), 
            stat="identity", width = 0.6, position = position_dodge()) +
   geom_errorbar(aes(x=CO2, ymin=mean-se, ymax=mean+se), width=0.1, position = position_dodge(0.5)) +
-  labs(x = Growth~CO["2"]~~(ppm), y = 'Stomatal limitation (%)' ) +
+  facet_wrap(~Species) +
+  labs(x = Growth~CO["2"]~~(ppm), y = NULL) +
   scale_fill_manual(values = c('black', 'grey')) +
+  theme(legend.position = c(0.8, 0.8),
+        legend.key.size = unit(0.5, 'cm'),
+        legend.title = element_text(size = 7),
+        legend.text = element_text(size = 7)) +
+  theme(text = element_text(size=8)) +
   themed
 
-summary_photo_stomatal_lim_photo = photo_stomatal_lim %>%
-  group_by(CO2.concentration) %>%
+# combine both plots into 1
+grid.arrange(stomatal_lim_opc, stomatal_lim_op, nrow = 1)
+
+##############################################################################
+##                           PHOTOSYNTHETIC RATE                            ##
+##############################################################################
+photo_op = photo_stomatal_lim %>%
+  filter(comp == 'Photosynthetic rate',
+         Species == 'O.punctata') %>%
+  group_by(CO2, Species, Nutrients) %>%
   summarise( 
     n=n(),
-    mean=mean(A...Ca.180),
-    sd=sd(A...Ca.180)
+    mean=mean(response),
+    sd=sd(response)
   ) %>%
   mutate( se=sd/sqrt(n))  %>%
   mutate( ic=se * qt((1-0.05)/2 + .5, n-1)) %>%
-  ggplot() +
-  geom_bar(color = 'black', fill = 'black', 
-           aes(x=CO2.concentration, y=mean), 
-           stat="identity", width = 0.6) +
-  geom_errorbar(aes(x=CO2.concentration, ymin=mean-se, ymax=mean+se), width=0.1) +
-  labs(x = Growth~CO["2"]~~(ppm), y=expression(A~~(mu~mol~m^-2~s^-1))) +
+  ggplot(aes(x=CO2, y=mean, fill = Nutrients)) +
+  geom_bar(color = 'black',  
+           stat="identity", width = 0.6, position = position_dodge()) +
+  geom_errorbar(aes(x=CO2, ymin=mean-se, ymax=mean+se), width=0.1, position = position_dodge(0.5)) +
+  facet_wrap(~Species) +
+  labs(x = Growth~CO["2"]~~(ppm), y = NULL) +
+  scale_fill_manual(values = c('black', 'grey')) +
+  theme(legend.position = c(0.15, 0.9),
+        legend.key.size = unit(0.5, 'cm'),
+        legend.title = element_text(size = 7),
+        legend.text = element_text(size = 7)) +
+  theme(text = element_text(size=8)) +
   themed
+
+photo_opc = photo_stomatal_lim %>%
+  filter(comp == 'Photosynthetic rate',
+         Species == 'O.pes-caprae') %>%
+  group_by(CO2, Species, Nutrients) %>%
+  summarise( 
+    n=n(),
+    mean=mean(response),
+    sd=sd(response)
+  ) %>%
+  mutate( se=sd/sqrt(n))  %>%
+  mutate( ic=se * qt((1-0.05)/2 + .5, n-1)) %>%
+  ggplot(aes(x=CO2, y=mean, fill = Nutrients)) +
+  geom_bar(color = 'black',  
+           stat="identity", width = 0.6, position = position_dodge()) +
+  geom_errorbar(aes(x=CO2, ymin=mean-se, ymax=mean+se), width=0.1, position = position_dodge(0.5)) +
+  facet_wrap(~Species) +
+  labs(x = Growth~CO["2"]~~(ppm), y=expression(A~~(mu~mol~m^-2~s^-1))) +
+  scale_fill_manual(values = c('black', 'grey')) +
+  theme(legend.position = 'none') +
+  theme(text = element_text(size=8)) +
+  themed
+
+# combine both plots into 1
+grid.arrange(photo_opc, photo_op, nrow = 1)
