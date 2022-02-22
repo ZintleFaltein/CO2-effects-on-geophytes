@@ -66,7 +66,7 @@ stomatal_lim_op = photo_stomatal_lim %>%
   facet_wrap(~Species) +
   labs(x = Growth~CO["2"]~~(ppm), y = NULL) +
   scale_fill_manual(values = c('black', 'grey')) +
-  theme(legend.position = c(0.8, 0.8),
+  theme(legend.position = c(0.8, 0.9),
         legend.key.size = unit(0.5, 'cm'),
         legend.title = element_text(size = 7),
         legend.text = element_text(size = 7)) +
@@ -97,7 +97,7 @@ photo_op = photo_stomatal_lim %>%
   facet_wrap(~Species) +
   labs(x = Growth~CO["2"]~~(ppm), y = NULL) +
   scale_fill_manual(values = c('black', 'grey')) +
-  theme(legend.position = c(0.15, 0.9),
+  theme(legend.position = c(0.2, 0.9),
         legend.key.size = unit(0.5, 'cm'),
         legend.title = element_text(size = 7),
         legend.text = element_text(size = 7)) +
