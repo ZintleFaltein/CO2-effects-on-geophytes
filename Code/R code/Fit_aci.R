@@ -38,18 +38,17 @@ fits <- function(exp, LA, rep, co2, fitmethod='default'){
   #' @param LA Nutrient concentration
   #' @param Rep  Replicate
   #' @param GCO2 Growth [CO2] applied to the plants
-  #' @param fitmethod Methodto fit the ACi curve
+  #' @param fitmethod Method to fit the ACi curve
   #' @return Aand GS at growth CO2
   data = aci%>%
     filter(Expt==exp,
            #Spp==as.factor(spp), 
            LA==LA, 
            Rep==rep,
-           GCO2==co2,
-           fitmethod==fitmethod) %>%
-    fitaci(Tcorrect = FALSE)
+           GCO2==co2) %>%
+    fitaci(Tcorrect = FALSE, fitmethod = fitmethod)
     #ci = Photosyn(Ca = co2)
-    return(Photosyn(Ca = co2)[2:3])
+    return(data$Photosyn(Ca = co2)[2:3])
   # f= fitaci(data, Tcorrect = FALSE)
   # f[2]
 }  
@@ -91,6 +90,10 @@ for (i in 1:5){
   print(fits(2, 100, i, 300))
 }
 
+for (i in 1:3){
+  print(fits(2, 100, i, 300))
+}
+
 # Experiment 1
 aci_plot %>%
   filter(Ave >= 0,
@@ -111,7 +114,7 @@ aci_plot %>%
 # find the photosynthetic rate at Ci=Ca
 # loop through all the replicates to get A and GS
 for (i in 1:3){
-  print(fits(1, 50, i, 180))
+  print(fits(1, 50, i, 180, 'bilinear'))
 }
 
 for (i in 1:3){
@@ -123,7 +126,7 @@ for (i in 1:3){
 }
 
 for (i in 1:3){
-  print(fits(1, 100, i, 180))
+  print(fits(1, 100, i, 180, 'bilinear'))
 }
 
 for (i in 1:3){
