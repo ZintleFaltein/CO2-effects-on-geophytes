@@ -12,10 +12,11 @@ library(ggpmisc)
 # load data
 aci <- read_excel("C:/Users/User/Documents/GitHub/CO2-effects-on-geophytes/Data/ACi fitting that corresponds to R library plantecophys.xlsx")
 aci_plot <- read_excel("C:/Users/User/Documents/GitHub/CO2-effects-on-geophytes/Data/ACi fitting that corresponds to R library plantecophys.xlsx", 
-                       sheet = "ACI values for R")
+                       sheet = "ACI values for R-Exp1&2")
 aci_e3 <- read_excel("C:/Users/User/Documents/GitHub/CO2-effects-on-geophytes/Data/ACi fitting that corresponds to R library plantecophys.xlsx", 
                       sheet = "ACI values for R-Exp3")
-  
+
+# correct the data types for CO2, leaf temperature & photosynthesis  
 aci$CO2S <- as.numeric(sub("," , ".", aci$CO2S))
 aci$Ci <- as.numeric(sub("," , ".", aci$Ci))
 aci$Tleaf <- as.numeric(sub("," , ".", aci$Tleaf))
@@ -30,22 +31,34 @@ aci_e3$SE <- as.numeric(sub("," , ".", aci_e3$SE))
 aci_e3$LA <- as.factor(aci_e3$LA)
 
 # create a function to get Vcmax, Jmax and Rd values
-fits <- function(exp, spp, LA, rep, co2){
+fits <- function(exp, LA, rep, co2, fitmethod='default'){
+  #' Take in a dataframe and fit the ACI curve
+  #' 
+  #' @param Expt  Experiment number
+  #' @param LA Nutrient concentration
+  #' @param Rep  Replicate
+  #' @param GCO2 Growth [CO2] applied to the plants
+  #' @param fitmethod Methodto fit the ACi curve
+  #' @return Aand GS at growth CO2
   data = aci%>%
     filter(Expt==exp,
-           Spp==as.factor(spp), 
+           #Spp==as.factor(spp), 
            LA==LA, 
            Rep==rep,
-           GCO2==co2) %>%
+           GCO2==co2,
+           fitmethod==fitmethod) %>%
     fitaci(Tcorrect = FALSE)
-  data[2]
+    #ci = Photosyn(Ca = co2)
+    return(Photosyn(Ca = co2)[2:3])
   # f= fitaci(data, Tcorrect = FALSE)
   # f[2]
 }  
 
-# there's something wrong with this function, it does not work as I expected
+###########################################################
+#                   plot A-Ci curves                      #
+###########################################################
 
-#plot A-Ci curves
+# get the formula for the curve
 formula <- y ~ poly(x, 4, raw = TRUE)
 
 # Experiment 2
@@ -64,6 +77,20 @@ aci_plot %>%
   theme +
   labs(x = expression(Ci~~(mu~mol~mol^-1)), y = expression(A~~(mu~mol~m^-2~s^-1)))
 
+# find the photosynthetic rate at Ci=Ca
+# loop through all the replicates to get A and GS
+for (i in 1:5){
+  print(fits(2, 100, i, 180))
+}
+
+for (i in 1:5){
+  print(fits(2, 100, i, 240))
+}
+
+for (i in 1:5){
+  print(fits(2, 100, i, 300))
+}
+
 # Experiment 1
 aci_plot %>%
   filter(Ave >= 0,
@@ -81,6 +108,31 @@ aci_plot %>%
   theme +
   labs(x = expression(Ci~~(mu~mol~mol^-1)), y = expression(A~~(mu~mol~m^-2~s^-1)))
 
+# find the photosynthetic rate at Ci=Ca
+# loop through all the replicates to get A and GS
+for (i in 1:3){
+  print(fits(1, 50, i, 180))
+}
+
+for (i in 1:3){
+  print(fits(1, 50, i, 280))
+}
+
+for (i in 1:3){
+  print(fits(1, 50, i, 400))
+}
+
+for (i in 1:3){
+  print(fits(1, 100, i, 180))
+}
+
+for (i in 1:3){
+  print(fits(1, 100, i, 280))
+}
+
+for (i in 1:3){
+  print(fits(1, 100, i, 400))
+}
 # Experiment 3
 aci_e3 %>%
   filter(Ave >= 0) %>%
@@ -96,3 +148,4 @@ aci_e3 %>%
   facet_wrap(~factor(LA, levels = c('100% Long Ashton', '70% Long Ashton', '50% Long Ashton'))) +
   theme + theme(strip.text.x = element_text(size = 10)) +
   labs(x = expression(Ci~~(mu~mol~mol^-1)), y = expression(A~~(mu~mol~m^-2~s^-1)))
+
