@@ -39,7 +39,7 @@ fits <- function(exp, LA, rep, co2, fitmethod='default'){
   #' @param Rep  Replicate
   #' @param GCO2 Growth [CO2] applied to the plants
   #' @param fitmethod Method to fit the ACi curve
-  #' @return Aand GS at growth CO2
+  #' @return A and GS at growth CO2
   data = aci%>%
     filter(Expt==exp,
            #Spp==as.factor(spp), 
@@ -72,7 +72,8 @@ aci_plot %>%
   #stat_poly_eq(
    # aes(label =  paste(..eq.label.., ..adj.rr.label.., sep = "~~~~")),
     #formula = formula) +
-  facet_wrap(Spp~CO2, nrow = 1) +
+  #facet_wrap(Spp~CO2, nrow = 1) +
+  facet_grid(rows = vars(Spp), cols = vars(CO2)) +
   theme +
   labs(x = expression(Ci~~(mu~mol~mol^-1)), y = expression(A~~(mu~mol~m^-2~s^-1)))
 
@@ -99,7 +100,7 @@ aci_plot %>%
   filter(Ave >= 0,
          Spp == 'O.punctata') %>%
   ggplot(aes(x=Ci, y=Ave)) +
-  geom_point() + 
+  geom_point(shape) + 
   geom_errorbar(aes(ymin=Ave-SE, ymax=Ave+SE)) +
   geom_smooth(method = 'lm', formula = formula, se = F, size=0.7, colour = 'black') +
   # stat_smooth(method = "lm", formula = formula) +
@@ -107,7 +108,8 @@ aci_plot %>%
   #   aes(label =  paste(..eq.label.., ..adj.rr.label.., sep = "~~~~")),
   #   formula = formula
   # ) +
-  facet_wrap(LA~CO2) +
+  #facet_wrap(LA~CO2) +
+  facet_wrap(Spp ~ LA+CO2) +
   theme +
   labs(x = expression(Ci~~(mu~mol~mol^-1)), y = expression(A~~(mu~mol~m^-2~s^-1)))
 
