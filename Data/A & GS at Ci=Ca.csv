@@ -1,0 +1,73 @@
+response;CO2;Nutrients;Species;comp
+0.1314567;180;100%Long Ashton;O.pes-caprae;Photosynthetic rate
+-1.391788;180;100%Long Ashton;O.pes-caprae;Photosynthetic rate
+1.165894;180;100%Long Ashton;O.pes-caprae;Photosynthetic rate
+1.135237;180;100%Long Ashton;O.pes-caprae;Photosynthetic rate
+2.817614;180;100%Long Ashton;O.pes-caprae;Photosynthetic rate
+5.236127;240;100%Long Ashton;O.pes-caprae;Photosynthetic rate
+1.138783;240;100%Long Ashton;O.pes-caprae;Photosynthetic rate
+1.369722;240;100%Long Ashton;O.pes-caprae;Photosynthetic rate
+0.08414105;240;100%Long Ashton;O.pes-caprae;Photosynthetic rate
+5.182357 ;240;100%Long Ashton;O.pes-caprae;Photosynthetic rate
+8.233105;300;100%Long Ashton;O.pes-caprae;Photosynthetic rate
+3.556488;300;100%Long Ashton;O.pes-caprae;Photosynthetic rate
+-0.01041014;300;100%Long Ashton;O.pes-caprae;Photosynthetic rate
+-0.081309;300;100%Long Ashton;O.pes-caprae;Photosynthetic rate
+-0.009387935;300;100%Long Ashton;O.pes-caprae;Photosynthetic rate
+8.233105;400;100%Long Ashton;O.pes-caprae;Photosynthetic rate
+3.556488 ;400;100%Long Ashton;O.pes-caprae;Photosynthetic rate
+-0.01041014;400;100%Long Ashton;O.pes-caprae;Photosynthetic rate
+14.61224;180;50%Long Ashton;O.punctata;Photosynthetic rate
+9.660071;180;50%Long Ashton;O.punctata;Photosynthetic rate
+11.10905;180;50%Long Ashton;O.punctata;Photosynthetic rate
+16.90218;280;50%Long Ashton;O.punctata;Photosynthetic rate
+14.55777;280;50%Long Ashton;O.punctata;Photosynthetic rate
+20.51494;280;50%Long Ashton;O.punctata;Photosynthetic rate
+20.7614;400;50%Long Ashton;O.punctata;Photosynthetic rate
+25.23632;400;50%Long Ashton;O.punctata;Photosynthetic rate
+27.40202;400;50%Long Ashton;O.punctata;Photosynthetic rate
+14.97514;180;100%Long Ashton;O.punctata;Photosynthetic rate
+9.830926;180;100%Long Ashton;O.punctata;Photosynthetic rate
+11.10905;180;100%Long Ashton;O.punctata;Photosynthetic rate
+16.90218 ;280;100%Long Ashton;O.punctata;Photosynthetic rate
+14.55777 ;280;100%Long Ashton;O.punctata;Photosynthetic rate
+20.51494 ;280;100%Long Ashton;O.punctata;Photosynthetic rate
+20.7614 ;400;100%Long Ashton;O.punctata;Photosynthetic rate
+25.23632 ;400;100%Long Ashton;O.punctata;Photosynthetic rate
+27.40202 ;400;100%Long Ashton;O.punctata;Photosynthetic rate
+0.004891358;180;100%Long Ashton;O.pes-caprae;Stomatal limitation
+0;180;100%Long Ashton;O.pes-caprae;Stomatal limitation
+0.04338162;180;100%Long Ashton;O.pes-caprae;Stomatal limitation
+0.04224089;180;100%Long Ashton;O.pes-caprae;Stomatal limitation
+0.1048403;180;100%Long Ashton;O.pes-caprae;Stomatal limitation
+0.1461228;240;100%Long Ashton;O.pes-caprae;Stomatal limitation
+0.03177963;240;100%Long Ashton;O.pes-caprae;Stomatal limitation
+0.03822437;240;100%Long Ashton;O.pes-caprae;Stomatal limitation
+0.002348096;240;100%Long Ashton;O.pes-caprae;Stomatal limitation
+0.1446223;240;100%Long Ashton;O.pes-caprae;Stomatal limitation
+0.1838068;300;100%Long Ashton;O.pes-caprae;Stomatal limitation
+0.07939977;300;100%Long Ashton;O.pes-caprae;Stomatal limitation
+0;300;100%Long Ashton;O.pes-caprae;Stomatal limitation
+0;300;100%Long Ashton;O.pes-caprae;Stomatal limitation
+0;300;100%Long Ashton;O.pes-caprae;Stomatal limitation
+0.1838068;400;100%Long Ashton;O.pes-caprae;Stomatal limitation
+0.07939977;400;100%Long Ashton;O.pes-caprae;Stomatal limitation
+0;400;100%Long Ashton;O.pes-caprae;Stomatal limitation
+0.5437051;180;50%Long Ashton;O.punctata;Stomatal limitation
+0.3594404;180;50%Long Ashton;O.punctata;Stomatal limitation
+0.4133551;180;50%Long Ashton;O.punctata;Stomatal limitation
+0.4043;280;50%Long Ashton;O.punctata;Stomatal limitation
+0.3482218;280;50%Long Ashton;O.punctata;Stomatal limitation
+0.4907173;280;50%Long Ashton;O.punctata;Stomatal limitation
+0.3476287;400;50%Long Ashton;O.punctata;Stomatal limitation
+0.4225569;400;50%Long Ashton;O.punctata;Stomatal limitation
+0.4588193;400;50%Long Ashton;O.punctata;Stomatal limitation
+0.5572084;180;100%Long Ashton;O.punctata;Stomatal limitation
+0.3657977;180;100%Long Ashton;O.punctata;Stomatal limitation
+0.4133551;180;100%Long Ashton;O.punctata;Stomatal limitation
+0.4043;280;100%Long Ashton;O.punctata;Stomatal limitation
+0.3482218;280;100%Long Ashton;O.punctata;Stomatal limitation
+0.4907173;280;100%Long Ashton;O.punctata;Stomatal limitation
+0.3476287;400;100%Long Ashton;O.punctata;Stomatal limitation
+0.4225569;400;100%Long Ashton;O.punctata;Stomatal limitation
+0.4588193;400;100%Long Ashton;O.punctata;Stomatal limitation
