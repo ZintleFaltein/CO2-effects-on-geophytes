@@ -20,8 +20,7 @@ photo_stomatal_lim <-
   )
 
 # update data types
-photo_stomatal_lim$response <-
-  as.numeric(sub("," , ".", photo_stomatal_lim$response))
+photo_stomatal_lim$response <- as.numeric(sub("," , ".", photo_stomatal_lim$response))
 photo_stomatal_lim$CO2 <- as.factor(photo_stomatal_lim$CO2)
 
 # create a theme for the plots
@@ -37,11 +36,15 @@ themed <- theme(
 )
 
 ##############################################################################
-##                           STOMATAL LIMITATION                            ##
+##                           STOMATAL CONDUCTANCE                            ##
 ##############################################################################
 stomatal_lim_opc = photo_stomatal_lim %>%
-  filter(comp == 'Stomatal limitation',
-         Species == 'O.pes-caprae') %>%
+  filter(comp == 'Stomatal conductance',
+         Species == 'O.pes-caprae',
+         response > 0,
+         CO2 != 400) %>%
+  # ggplot(aes(x=CO2, y=response)) + 
+  # geom_boxplot() +
   group_by(CO2, Species) %>%
   summarise(n = n(),
             mean = mean(response),
@@ -62,12 +65,12 @@ stomatal_lim_opc = photo_stomatal_lim %>%
     ymax = mean + se
   ), width = 0.1) +
   facet_wrap( ~ Species) +
-  labs(x = Growth ~ CO["2"] ~  ~ (ppm), y = 'Stomatal limitation (%)') +
+  labs(x = Growth ~ CO["2"] ~  ~ (ppm), y = expression(Stomatal~conductance~~(mu~mol~m^-2~s^-1))) +
   theme(text = element_text(size = 8)) +
   themed
 
 stomatal_lim_op = photo_stomatal_lim %>%
-  filter(comp == 'Stomatal limitation',
+  filter(comp == 'Stomatal conductance',
          Species == 'O.punctata') %>%
   group_by(CO2, Species, Nutrients) %>%
   summarise(n = n(),
@@ -178,3 +181,48 @@ photo_opc = photo_stomatal_lim %>%
 
 # combine both plots into 1
 grid.arrange(photo_opc, photo_op, nrow = 1)
+
+
+##############################################################################
+##                                   ANOVA                                  ##
+##############################################################################
+stom <- photo_stomatal_lim %>%
+  filter(comp == 'Stomatal conductance')
+
+photo <- photo_stomatal_lim %>%
+  filter(comp == 'Photosynthetic rate')
+
+#stomatal conductance - O. punctata
+conductance.lm<-lm(response ~ CO2*Nutrients, data = filter(stom, Species == 'O.punctata'))
+summary(conductance.lm)
+conductance.lm<-lm(response ~ CO2, data = filter(stom, Species == 'O.punctata'))
+summary(conductance.lm)
+conductance.lm<-lm(response ~ Nutrients, data = filter(stom, Species == 'O.punctata'))
+summary(conductance.lm)
+
+conductance.aov<-aov(response ~ CO2, data = filter(stom, Species == 'O.punctata'))
+TukeyHSD(conductance.aov, conf.level = 0.95)
+
+# photosynthetic values - O. punctata
+photo_op.lm<-lm(response ~ CO2*Nutrients, data = filter(photo, Species == 'O.punctata'))
+summary(photo_op.lm)
+photo_op.lm<-lm(response ~ CO2, data = filter(photo, Species == 'O.punctata'))
+summary(photo_op.lm)
+photo_op.lm<-lm(response ~ Nutrients, data = filter(photo, Species == 'O.punctata'))
+summary(photo_op.lm)
+
+photo_op.aov<-aov(response ~ CO2*Nutrients, data = filter(photo, Species == 'O.punctata'))
+TukeyHSD(photo_op.aov, conf.level = 0.95)
+
+#stomatal conductance - O. pes-caprae
+conductance_opc.lm<-lm(response ~ CO2, data = filter(stom, Species == 'O.pes-caprae'))
+summary(conductance_opc.lm)
+
+conductance_opc.aov<-aov(response ~ CO2, data = filter(stom, Species == 'O.pes-caprae'))
+TukeyHSD(conductance_opc.aov, conf.level = 0.95)
+
+photo_opc.lm<-lm(response ~ CO2, data = filter(photo, Species == 'O.pes-caprae'))
+summary(photo_opc.lm)
+
+photo_opc.aov<-aov(response ~ CO2, data = filter(photo, Species == 'O.pes-caprae'))
+TukeyHSD(photo.aov, conf.level = 0.95)

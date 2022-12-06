@@ -8,7 +8,8 @@ library(tidyverse)
 library(readr)
 
 # load data
-stomatal_traits <- read_delim("Data/Oxalis stomatal traits.csv",";", escape_double = FALSE, trim_ws = TRUE) 
+stomatal_traits <- read_delim("C:/Users/User/Documents/GitHub/CO2-effects-on-geophytes/Data/Oxalis stomatal traits.csv", 
+                              delim = ";", escape_double = FALSE, trim_ws = TRUE)
 
 theme <- theme(panel.grid.minor = element_blank(),
                panel.grid.major = element_blank(),
@@ -21,9 +22,9 @@ theme <- theme(panel.grid.minor = element_blank(),
 # correct datatypes
 stomatal_traits$CO2 <- as.factor(stomatal_traits$CO2)
 # stomatal_traits$Nutrients <- as.factor(stomatal_traits$Nutrients)
-# stomatal_traits$size <- as.numeric(sub("," , ".", stomatal_traits$size))
-#stomatal_traits$density <- as.numeric(sub("," , ".", stomatal_traits$density))
-#stomatal_traits$conductance <- as.numeric(sub(",", ".", stomatal_traits$conductance))
+stomatal_traits$size <- as.numeric(sub("," , ".", stomatal_traits$size))
+stomatal_traits$density <- as.numeric(sub("," , ".", stomatal_traits$density))
+stomatal_traits$conductance <- as.numeric(sub(",", ".", stomatal_traits$conductance))
 
 str(stomatal_traits)
 head(stomatal_traits)

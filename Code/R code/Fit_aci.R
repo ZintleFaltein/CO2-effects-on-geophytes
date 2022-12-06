@@ -88,6 +88,7 @@ aci_plot %>%
   #stat_poly_eq(
   # aes(label =  paste(..eq.label.., ..adj.rr.label.., sep = "~~~~")),
   #formula = formula) +
+  #geom_vline(xintercept = c(180, 240, 300)) +
   facet_wrap(Spp~CO2, nrow = 1) +
  #facet_grid(rows = vars(Spp), cols = vars(CO2)) +
   theme +
@@ -133,6 +134,7 @@ aci_plot %>%
   #   formula = formula
   # ) +
   #facet_wrap(LA~CO2) +
+  #geom_vline(xintercept = c(180, 280, 400)) +
   facet_wrap(Spp ~ LA + CO2) +
   theme +
   labs(x = expression(Ci ~  ~ (mu ~ mol ~ mol ^ -1)), y = expression(A ~
@@ -163,6 +165,7 @@ for (i in 1:3) {
 for (i in 1:3) {
   print(fits(1, 100, i, 400))
 }
+
 # Experiment 3
 aci_e3 %>%
   filter(Ave >= 0) %>%
@@ -188,3 +191,17 @@ aci_e3 %>%
   theme + theme(strip.text.x = element_text(size = 10)) +
   labs(x = expression(Ci ~  ~ (mu ~ mol ~ mol ^ -1)), y = expression(A ~
                                                                        ~ (mu ~ mol ~ m ^ -2 ~ s ^ -1)))
+
+# find the photosynthetic rate at Ci=Ca
+# loop through all the replicates to get A and GS
+for (i in 1:4) {
+  print(fits(3, 100, i, 400))
+}
+
+for (i in 1:5) {
+  print(fits(3, 70, i, 400, 'bilinear'))
+}
+
+for (i in 1:4) {
+  print(fits(3, 50, i, 400, 'bilinear'))
+}
