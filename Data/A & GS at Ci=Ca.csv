@@ -1,73 +1,34 @@
-response;CO2;Nutrients;Species;comp
-0.1314567;180;100%Long Ashton;O.pes-caprae;Photosynthetic rate
--1.391788;180;100%Long Ashton;O.pes-caprae;Photosynthetic rate
-1.165894;180;100%Long Ashton;O.pes-caprae;Photosynthetic rate
-1.135237;180;100%Long Ashton;O.pes-caprae;Photosynthetic rate
-2.817614;180;100%Long Ashton;O.pes-caprae;Photosynthetic rate
-5.236127;240;100%Long Ashton;O.pes-caprae;Photosynthetic rate
-1.138783;240;100%Long Ashton;O.pes-caprae;Photosynthetic rate
-1.369722;240;100%Long Ashton;O.pes-caprae;Photosynthetic rate
-0.08414105;240;100%Long Ashton;O.pes-caprae;Photosynthetic rate
-5.182357 ;240;100%Long Ashton;O.pes-caprae;Photosynthetic rate
-8.233105;300;100%Long Ashton;O.pes-caprae;Photosynthetic rate
-3.556488;300;100%Long Ashton;O.pes-caprae;Photosynthetic rate
--0.01041014;300;100%Long Ashton;O.pes-caprae;Photosynthetic rate
--0.081309;300;100%Long Ashton;O.pes-caprae;Photosynthetic rate
--0.009387935;300;100%Long Ashton;O.pes-caprae;Photosynthetic rate
-8.233105;400;100%Long Ashton;O.pes-caprae;Photosynthetic rate
-3.556488 ;400;100%Long Ashton;O.pes-caprae;Photosynthetic rate
--0.01041014;400;100%Long Ashton;O.pes-caprae;Photosynthetic rate
-14.61224;180;50%Long Ashton;O.punctata;Photosynthetic rate
-9.660071;180;50%Long Ashton;O.punctata;Photosynthetic rate
-11.10905;180;50%Long Ashton;O.punctata;Photosynthetic rate
-16.90218;280;50%Long Ashton;O.punctata;Photosynthetic rate
-14.55777;280;50%Long Ashton;O.punctata;Photosynthetic rate
-20.51494;280;50%Long Ashton;O.punctata;Photosynthetic rate
-20.7614;400;50%Long Ashton;O.punctata;Photosynthetic rate
-25.23632;400;50%Long Ashton;O.punctata;Photosynthetic rate
-27.40202;400;50%Long Ashton;O.punctata;Photosynthetic rate
-14.97514;180;100%Long Ashton;O.punctata;Photosynthetic rate
-9.830926;180;100%Long Ashton;O.punctata;Photosynthetic rate
-11.10905;180;100%Long Ashton;O.punctata;Photosynthetic rate
-16.90218 ;280;100%Long Ashton;O.punctata;Photosynthetic rate
-14.55777 ;280;100%Long Ashton;O.punctata;Photosynthetic rate
-20.51494 ;280;100%Long Ashton;O.punctata;Photosynthetic rate
-20.7614 ;400;100%Long Ashton;O.punctata;Photosynthetic rate
-25.23632 ;400;100%Long Ashton;O.punctata;Photosynthetic rate
-27.40202 ;400;100%Long Ashton;O.punctata;Photosynthetic rate
-0.004891358;180;100%Long Ashton;O.pes-caprae;Stomatal conductance
-0;180;100%Long Ashton;O.pes-caprae;Stomatal conductance
-0.04338162;180;100%Long Ashton;O.pes-caprae;Stomatal conductance
-0.04224089;180;100%Long Ashton;O.pes-caprae;Stomatal conductance
-0.1048403;180;100%Long Ashton;O.pes-caprae;Stomatal conductance
-0.1461228;240;100%Long Ashton;O.pes-caprae;Stomatal conductance
-0.03177963;240;100%Long Ashton;O.pes-caprae;Stomatal conductance
-0.03822437;240;100%Long Ashton;O.pes-caprae;Stomatal conductance
-0.002348096;240;100%Long Ashton;O.pes-caprae;Stomatal conductance
-0.1446223;240;100%Long Ashton;O.pes-caprae;Stomatal conductance
-0.1838068;300;100%Long Ashton;O.pes-caprae;Stomatal conductance
-0.07939977;300;100%Long Ashton;O.pes-caprae;Stomatal conductance
-0;300;100%Long Ashton;O.pes-caprae;Stomatal conductance
-0;300;100%Long Ashton;O.pes-caprae;Stomatal conductance
-0;300;100%Long Ashton;O.pes-caprae;Stomatal conductance
-0.1838068;400;100%Long Ashton;O.pes-caprae;Stomatal conductance
-0.07939977;400;100%Long Ashton;O.pes-caprae;Stomatal conductance
-0;400;100%Long Ashton;O.pes-caprae;Stomatal conductance
-0.5437051;180;50%Long Ashton;O.punctata;Stomatal conductance
-0.3594404;180;50%Long Ashton;O.punctata;Stomatal conductance
-0.4133551;180;50%Long Ashton;O.punctata;Stomatal conductance
-0.4043;280;50%Long Ashton;O.punctata;Stomatal conductance
-0.3482218;280;50%Long Ashton;O.punctata;Stomatal conductance
-0.4907173;280;50%Long Ashton;O.punctata;Stomatal conductance
-0.3476287;400;50%Long Ashton;O.punctata;Stomatal conductance
-0.4225569;400;50%Long Ashton;O.punctata;Stomatal conductance
-0.4588193;400;50%Long Ashton;O.punctata;Stomatal conductance
-0.5572084;180;100%Long Ashton;O.punctata;Stomatal conductance
-0.3657977;180;100%Long Ashton;O.punctata;Stomatal conductance
-0.4133551;180;100%Long Ashton;O.punctata;Stomatal conductance
-0.4043;280;100%Long Ashton;O.punctata;Stomatal conductance
-0.3482218;280;100%Long Ashton;O.punctata;Stomatal conductance
-0.4907173;280;100%Long Ashton;O.punctata;Stomatal conductance
-0.3476287;400;100%Long Ashton;O.punctata;Stomatal conductance
-0.4225569;400;100%Long Ashton;O.punctata;Stomatal conductance
-0.4588193;400;100%Long Ashton;O.punctata;Stomatal conductance
+A_ci=gco2;A_ca=gco2;stomatal_limitation;;;;;
+1,855936;0,1314567;1,724;180;100%Long Ashton;O.pes-caprae;;The values on this sheet were used to calculate stomatal limitation
+-2,928043;-1,391788;52,467;180;100%Long Ashton;O.pes-caprae;;
+1,949302;1,165894;40,189;180;100%Long Ashton;O.pes-caprae;;
+1,986739;1,135237;42,859;180;100%Long Ashton;O.pes-caprae;;
+4,039444;2,817614;30,247;180;100%Long Ashton;O.pes-caprae;;
+6,476583;5,236127;19,153;240;100%Long Ashton;O.pes-caprae;;
+2,035581;1,138783;44,056;240;100%Long Ashton;O.pes-caprae;;
+3,466099;1,369722;60,482;240;100%Long Ashton;O.pes-caprae;;
+0,7315465;0,08414105;88,498;240;100%Long Ashton;O.pes-caprae;;
+6,670225;5,182357;22,306;240;100%Long Ashton;O.pes-caprae;;
+9,293483;8,233105;11,410;300;100%Long Ashton;O.pes-caprae;;
+4,711108;3,556488;24,508;300;100%Long Ashton;O.pes-caprae;;
+0,248361;-0,01041014;104,192;300;100%Long Ashton;O.pes-caprae;;
+-0,2896195;-0,081309;71,926;300;100%Long Ashton;O.pes-caprae;;
+0,2612137;-0,009387935;103,594;300;100%Long Ashton;O.pes-caprae;;
+20,66365;14,61224;29,285;180;50%Long Ashton;O.punctata;;
+15,22658;9,660071;36,558;180;50%Long Ashton;O.punctata;;
+15,85466;11,10905;29,932;180;50%Long Ashton;O.punctata;;
+22,82264;16,90218;25,941;280;50%Long Ashton;O.punctata;;
+20,35046;14,55777;28,465;280;50%Long Ashton;O.punctata;;
+24,0818;20,51494;14,811;280;50%Long Ashton;O.punctata;;
+25,70653;20,7614;19,237;400;50%Long Ashton;O.punctata;;
+28,74682;25,23632;12,212;400;50%Long Ashton;O.punctata;;
+33,59481;27,40202;18,434;400;50%Long Ashton;O.punctata;;
+20,66365;14,97514;27,529;180;100%Long Ashton;O.punctata;;
+15,22658;9,830926;35,436;180;100%Long Ashton;O.punctata;;
+15,85466;11,10905;29,932;180;100%Long Ashton;O.punctata;;
+22,82264;16,90218;25,941;280;100%Long Ashton;O.punctata;;
+20,35046;14,55777;28,465;280;100%Long Ashton;O.punctata;;
+24,0818;20,51494;14,811;280;100%Long Ashton;O.punctata;;
+25,70653;20,7614;19,237;400;100%Long Ashton;O.punctata;;
+28,74682;25,23632;12,212;400;100%Long Ashton;O.punctata;;
+33,59481;27,40202;18,434;400;100%Long Ashton;O.punctata;;

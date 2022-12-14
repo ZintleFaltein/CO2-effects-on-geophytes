@@ -39,8 +39,8 @@ aci_e3$Ave <- as.numeric(sub("," , ".", aci_e3$Ave))
 aci_e3$SE <- as.numeric(sub("," , ".", aci_e3$SE))
 aci_e3$LA <- as.factor(aci_e3$LA)
 
-# create a function to get Vcmax, Jmax and Rd values
-fits <- function(exp, LA, rep, co2, fitmethod = 'default') {
+# create a function to get A an gst at growth CO2
+fits_ca <- function(exp, LA, rep, co2, fitmethod = 'default') {
   #' Take in a data frame and fit the ACI curve
   #'
   #' @param Expt  Experiment number
@@ -58,6 +58,29 @@ fits <- function(exp, LA, rep, co2, fitmethod = 'default') {
     fitaci(Tcorrect = FALSE, fitmethod = fitmethod)
   #ci = Photosyn(Ca = co2)
   return(data$Photosyn(Ca = co2)[2:3])
+  # f= fitaci(data, Tcorrect = FALSE)
+  # f[2]
+}
+
+# create a function to get A at Ci=CO2
+fits_ci <- function(exp, LA, rep, co2, fitmethod = 'default') {
+  #' Take in a data frame and fit the ACI curve
+  #'
+  #' @param Expt  Experiment number
+  #' @param LA Nutrient concentration
+  #' @param Rep  Replicate
+  #' @param GCO2 Growth [CO2] applied to the plants
+  #' @param fitmethod Method to fit the ACi curve
+  #' @return A and GS at growth CO2
+  data = aci %>%
+    filter(Expt == exp,
+           #Spp==as.factor(spp),
+           LA == LA,
+           Rep == rep,
+           GCO2 == co2) %>%
+    fitaci(Tcorrect = FALSE, fitmethod = fitmethod)
+  #ci = Photosyn(Ca = co2)
+  return(data$Photosyn(Ci = co2)[2])
   # f= fitaci(data, Tcorrect = FALSE)
   # f[2]
 }
@@ -98,15 +121,27 @@ aci_plot %>%
 # find the photosynthetic rate at Ci=Ca
 # loop through all the replicates to get A and GS using the function fits
 for (i in 1:5) {
-  print(fits(2, 100, i, 180))
+  print(fits_ca(2, 100, i, 180))
 }
 
 for (i in 1:5) {
-  print(fits(2, 100, i, 240))
+  print(fits_ci(2, 100, i, 180))
 }
 
 for (i in 1:5) {
-  print(fits(2, 100, i, 300))
+  print(fits_ca(2, 100, i, 240))
+}
+
+for (i in 1:5) {
+  print(fits_ci(2, 100, i, 240))
+}
+
+for (i in 1:5) {
+  print(fits_ca(2, 100, i, 300))
+}
+
+for (i in 1:5) {
+  print(fits_ci(2, 100, i, 300))
 }
 
 
@@ -143,27 +178,52 @@ aci_plot %>%
 # find the photosynthetic rate at Ci=Ca
 # loop through all the replicates to get A and GS
 for (i in 1:3) {
-  print(fits(1, 50, i, 180, 'bilinear'))
+  print(fits_ca(1, 50, i, 180, 'bilinear'))
 }
 
 for (i in 1:3) {
-  print(fits(1, 50, i, 280))
+  print(fits_ci(1, 50, i, 180, 'bilinear'))
+}
+
+
+for (i in 1:3) {
+  print(fits_ca(1, 50, i, 280))
 }
 
 for (i in 1:3) {
-  print(fits(1, 50, i, 400))
+  print(fits_ci(1, 50, i, 280))
 }
 
 for (i in 1:3) {
-  print(fits(1, 100, i, 180, 'bilinear'))
+  print(fits_ca(1, 50, i, 400))
 }
 
 for (i in 1:3) {
-  print(fits(1, 100, i, 280))
+  print(fits_ci(1, 50, i, 400))
 }
 
 for (i in 1:3) {
-  print(fits(1, 100, i, 400))
+  print(fits_ca(1, 100, i, 180, 'bilinear'))
+}
+
+for (i in 1:3) {
+  print(fits_ci(1, 100, i, 180, 'bilinear'))
+}
+
+for (i in 1:3) {
+  print(fits_ca(1, 100, i, 280))
+}
+
+for (i in 1:3) {
+  print(fits_ci(1, 100, i, 280))
+}
+
+for (i in 1:3) {
+  print(fits_ca(1, 100, i, 400))
+}
+
+for (i in 1:3) {
+  print(fits_ci(1, 100, i, 400))
 }
 
 # Experiment 3
@@ -195,13 +255,13 @@ aci_e3 %>%
 # find the photosynthetic rate at Ci=Ca
 # loop through all the replicates to get A and GS
 for (i in 1:4) {
-  print(fits(3, 100, i, 400))
+  print(fits_ca(3, 100, i, 400))
 }
 
 for (i in 1:5) {
-  print(fits(3, 70, i, 400, 'bilinear'))
+  print(fits_ca(3, 70, i, 400, 'bilinear'))
 }
 
 for (i in 1:4) {
-  print(fits(3, 50, i, 400, 'bilinear'))
+  print(fits_ca(3, 50, i, 400, 'bilinear'))
 }
