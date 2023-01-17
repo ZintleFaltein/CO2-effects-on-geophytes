@@ -255,13 +255,26 @@ aci_e3 %>%
 # find the photosynthetic rate at Ci=Ca
 # loop through all the replicates to get A and GS
 for (i in 1:4) {
-  print(fits_ca(3, 100, i, 400))
+  print(fits_ca(3, 100, i, 400, 'bilinear'))
+}
+
+for (i in 1:4) {
+  print(fits_ci(3, 100, i, 400, 'bilinear'))
 }
 
 for (i in 1:5) {
   print(fits_ca(3, 70, i, 400, 'bilinear'))
 }
 
+for (i in 1:5) {
+  print(fits_ci(3, 70, i, 400, 'bilinear'))
+}
+
+
 for (i in 1:4) {
   print(fits_ca(3, 50, i, 400, 'bilinear'))
+}
+
+for (i in 1:4) {
+  print(fits_ci(3, 50, i, 400, 'bilinear'))
 }
