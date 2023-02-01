@@ -7,17 +7,15 @@ library(dplyr)
 library(readr)
 library(gridExtra)
 
-#photo_stomatal_lim <- read_delim("C:/Users/User/Documents/GitHub/CO2-effects-on-geophytes/Data/Photosynthetic rates at the growth CO2-Exp1&2.csv",
-#                                                           delim = ";", escape_double = FALSE, trim_ws = TRUE) %>%
-#select(response, CO2, Nutrients, Species, comp)
+photo_stomatal_lim <- read_excel("C:/Users/User/Documents/GitHub/CO2-effects-on-geophytes/Data/A&GS_updated.xlsx")
 
-photo_stomatal_lim <-
-  read_delim(
-    "https://raw.githubusercontent.com/ZintleFaltein/CO2-effects-on-geophytes/master/Data/A%26GS.csv?token=GHSAT0AAAAAAB4K63CPI66M74ZCZLDOSFU4Y4Z5KEA",
-    delim = ",",
-    escape_double = FALSE,
-    trim_ws = TRUE
-  )
+# photo_stomatal_lim <-
+#   read_delim(
+#     "https://raw.githubusercontent.com/ZintleFaltein/CO2-effects-on-geophytes/master/Data/A%26GS.csv?token=GHSAT0AAAAAAB4K63CPI66M74ZCZLDOSFU4Y4Z5KEA",
+#     delim = ",",
+#     escape_double = FALSE,
+#     trim_ws = TRUE
+#   )
 
 # update data types
 photo_stomatal_lim$response <- as.numeric(sub("," , ".", photo_stomatal_lim$response))

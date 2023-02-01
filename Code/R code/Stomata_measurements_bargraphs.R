@@ -9,7 +9,7 @@ library(tidyverse)
 library(readr)
 
 # load data from github
-stomatal_measurements <- read_delim("https://raw.githubusercontent.com/ZintleFaltein/CO2-effects-on-geophytes/master/R%20code/Data/Oxalis%20combined%20stomatal%20measurements.csv?token=AOMLEIAJIVDTF3CRVXZQRUDBYTGZY", 
+stomatal_measurements <- read_delim("https://raw.githubusercontent.com/ZintleFaltein/CO2-effects-on-geophytes/master/R%20code/Data/Oxalis%20combined%20stomatal%20measurements.csv", 
                                     delim = ";", escape_double = FALSE, trim_ws = TRUE)
 
 # create a custom theme for plots

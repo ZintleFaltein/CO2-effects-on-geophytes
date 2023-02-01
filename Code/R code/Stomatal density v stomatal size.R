@@ -1,5 +1,5 @@
 # This script creates a scatter plot that explores the relationship
-# between stomatal density, conductance and size
+# between stomatal density and size
 
 library(ggplot2)
 library(ggpmisc)
@@ -8,8 +8,7 @@ library(tidyverse)
 library(readr)
 
 # load data
-stomatal_traits <- read_delim('https://raw.githubusercontent.com/ZintleFaltein/CO2-effects-on-geophytes/master/Data/Oxalis%20stomatal%20traits.csv?token=GHSAT0AAAAAAB5TEBPFX3T7XH2VW7DBYHBCY6G2JZA',
-                              delim = ';')
+stomatal_traits <- read_delim('https://raw.githubusercontent.com/ZintleFaltein/CO2-effects-on-geophytes/master/Data/Oxalis_stomatal_traits.csv',delim = ';')
 
 themed <- theme(panel.grid.minor = element_blank(),
                panel.grid.major = element_blank(),
@@ -40,8 +39,6 @@ stomatal_plot <- ggplot(stomatal_traits, aes(x = density, y = conductance, size 
                       parse = TRUE, size=3) +
   labs(x=expression(Stomatal~density~~(mm^-2)),y=expression(Stomatal~conductance~~(mu~mol~m^-2~s^-1))) +
   themed 
-
-stomatal_plot
 
 #stomatal_plot <- stomatal_plot + scale_shape_manual(values = c(3, 16, 8)) + 
   #scale_size_manual(values = c(10, 10, 10))

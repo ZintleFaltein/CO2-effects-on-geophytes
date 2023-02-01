@@ -19,11 +19,11 @@ aci_plot <-
     "C:/Users/User/Documents/GitHub/CO2-effects-on-geophytes/Data/ACi fitting that corresponds to R library plantecophys.xlsx",
     sheet = "ACI values for R-Exp1&2"
   )
-aci_e3 <-
-  read_excel(
-    "C:/Users/User/Documents/GitHub/CO2-effects-on-geophytes/Data/ACi fitting that corresponds to R library plantecophys.xlsx",
-    sheet = "ACI values for R-Exp3"
-  )
+# aci_e3 <-
+#   read_excel(
+#     "C:/Users/User/Documents/GitHub/CO2-effects-on-geophytes/Data/ACi fitting that corresponds to R library plantecophys.xlsx",
+#     sheet = "ACI values for R-Exp3"
+#   )
 
 # correct the data types for CO2, leaf temperature & photosynthesis
 aci$CO2S <- as.numeric(sub("," , ".", aci$CO2S))
@@ -252,29 +252,42 @@ aci_e3 %>%
   labs(x = expression(Ci ~  ~ (mu ~ mol ~ mol ^ -1)), y = expression(A ~
                                                                        ~ (mu ~ mol ~ m ^ -2 ~ s ^ -1)))
 
+
+
 # find the photosynthetic rate at Ci=Ca
 # loop through all the replicates to get A and GS
-for (i in 1:4) {
-  print(fits_ca(3, 100, i, 400, 'bilinear'))
-}
+# for (i in 1:4) {
+#   print(fits_ca3(3, 100, i, 'bilinear'))
+# }
+# 
+# for (i in 1:4) {
+#   print(fits_ci(3, 100, i, 400, 'bilinear'))
+# }
+# 
+# for (i in 1:5) {
+#   print(fits_ca(3, 70, i, 400, 'bilinear'))
+# }
+# 
+# for (i in 1:5) {
+#   print(fits_ci(3, 70, i, 400, 'bilinear'))
+# }
+# 
+# 
+# for (i in 1:4) {
+#   print(fits_ca(3, 50, i, 400, 'bilinear'))
+# }
+# 
+# for (i in 1:4) {
+#   print(fits_ci(3, 50, i, 400, 'bilinear'))
+# }
 
-for (i in 1:4) {
-  print(fits_ci(3, 100, i, 400, 'bilinear'))
-}
+###### The function does not work for the above code so I used the code below instead
 
-for (i in 1:5) {
-  print(fits_ca(3, 70, i, 400, 'bilinear'))
-}
-
-for (i in 1:5) {
-  print(fits_ci(3, 70, i, 400, 'bilinear'))
-}
-
-
-for (i in 1:4) {
-  print(fits_ca(3, 50, i, 400, 'bilinear'))
-}
-
-for (i in 1:4) {
-  print(fits_ci(3, 50, i, 400, 'bilinear'))
-}
+# find photosynthetic values for Exp3
+data = aci %>%
+  filter(Expt == 3,
+         LA == 70,
+         Rep == 5) %>%
+  fitaci(Tcorrect = FALSE, fitmethod = 'bilinear')
+data$Photosyn(Ca=400)
+data$Photosyn(Ci=400)
