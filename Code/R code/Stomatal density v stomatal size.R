@@ -1,5 +1,5 @@
 # This script creates a scatter plot that explores the relationship
-# between stomatal density and size
+# between stomatal density and conductance
 
 library(ggplot2)
 library(ggpmisc)
@@ -8,7 +8,12 @@ library(tidyverse)
 library(readr)
 
 # load data
-stomatal_traits <- read_delim('https://raw.githubusercontent.com/ZintleFaltein/CO2-effects-on-geophytes/master/Data/Oxalis_stomatal_traits.csv',delim = ';')
+stomatal_traits <- read_delim(
+  "./Data/Oxalis_stomatal_traits.csv",
+  delim = ";",
+  escape_double = FALSE,
+  trim_ws = TRUE
+)
 
 themed <- theme(panel.grid.minor = element_blank(),
                panel.grid.major = element_blank(),
@@ -28,9 +33,9 @@ stomatal_traits$conductance <- as.numeric(sub(",", ".", stomatal_traits$conducta
 str(stomatal_traits)
 head(stomatal_traits)
 
-# Plot scatter plot to see correlation between size & density
+# Plot scatter plot to see correlation between conductance & density
 formula <- y ~ x
-stomatal_plot <- ggplot(stomatal_traits, aes(x = density, y = conductance, size = size)) +
+stomatal_plot <- ggplot(stomatal_traits, aes(x = density, y = conductance, size = size, colour = CO2)) +
   facet_wrap(~Nutrients) +
   geom_point(alpha=0.5) + 
   scale_size(range = c(1, 15), name = expression(Stomata~size~~(mu~m))) +
@@ -45,18 +50,7 @@ stomatal_plot <- ggplot(stomatal_traits, aes(x = density, y = conductance, size 
 #stomatal_plot <- stomatal_plot + scale_colour_manual(values = c("black", "red", 'blue'))
 # Show equation and R squared value on the plot
 
-#Removes legend
-#stomatal_plot <- stomatal_plot + guides(fill=FALSE)
-#Axis text size and direction
-# stomatal_plot <- stomatal_plot + theme(text = element_text(size=10),axis.text.x = element_text(angle=0, vjust=1,color="black"),axis.text.y = element_text(color="black"))
-# #Remove grid lines and set background white
-# stomatal_plot <- stomatal_plot +theme(panel.grid.minor = element_blank(),panel.grid.major = element_blank(),panel.background=element_rect(fill="white"))
-# #Black lines around panels
-# stomatal_plot <- stomatal_plot+ theme(axis.line=element_line("black"),panel.border=element_rect(fill=NA,colour="black"))
-# #Strip at top of fig
-# stomatal_plot <-stomatal_plot + theme(strip.background=element_rect(fill="grey 80",colour="black"))
-# stomatal_plot <- stomatal_plot + theme(axis.ticks.x = element_blank(), axis.text.x = element_blank(), panel.spacing = unit(0.2, 'lines'))
-# 
+
 # #Plot relationship between stomatal size and conductance
 # formula = y ~ x
 # density_conductance <- ggplot(stomatal_traits, aes(x = density, y = conductance))
