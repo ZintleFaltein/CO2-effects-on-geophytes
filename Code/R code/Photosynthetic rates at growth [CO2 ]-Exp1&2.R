@@ -9,19 +9,11 @@ library(gridExtra)
 
 photo_stomatal_lim <-
   read_delim(
-    "C:/Users/User/Documents/GitHub/CO2-effects-on-geophytes/Data/A&GS_updated.csv",
+    "Data/A&GS_updated.csv",
     delim = ";",
     escape_double = FALSE,
     trim_ws = TRUE
   )
-
-# photo_stomatal_lim <-
-#   read_delim(
-#     "https://raw.githubusercontent.com/ZintleFaltein/CO2-effects-on-geophytes/master/Data/A%26GS.csv?token=GHSAT0AAAAAAB4K63CPI66M74ZCZLDOSFU4Y4Z5KEA",
-#     delim = ",",
-#     escape_double = FALSE,
-#     trim_ws = TRUE
-#   )
 
 # update data types
 photo_stomatal_lim$response <-
