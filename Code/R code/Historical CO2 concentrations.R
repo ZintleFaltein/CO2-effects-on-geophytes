@@ -2,8 +2,10 @@
 
 library(dplyr)
 library(ggplot2)
+library(readr)
 
-data <- read.csv("https://raw.githubusercontent.com/ZintleFaltein/CO2-effects-on-geophytes/master/R%20code/Data/carbon.csv?token=AOMLEIBDSBOBAMO6F2JTA53BYTHEQ", header=TRUE, sep = ';')
+data <- read_delim("Data/carbon.csv", delim = ";", 
+                     escape_double = FALSE, trim_ws = TRUE)
 
 head(data)
 
@@ -42,7 +44,8 @@ conc <- conc +
   #alpha=0.5 sets the intensity of the rectangle colour
   annotate("rect", xmin = 190000, xmax=200000, ymin=170, ymax=300, alpha=0.5) +
   annotate("text", x=190000, y=305, label="modern human emergence", size=2.5) +
-  themed
+  themed +
+  labs(x = "Age (Years before present)", y = expression(CO["2"]~~(ppm)))
 
 conc
 
