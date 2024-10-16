@@ -9,7 +9,7 @@ library(readr)
 
 # load data
 stomatal_traits <- read_delim(
-  "./Data/Oxalis_stomatal_traits.csv",
+  "C:/Users/User/Documents/GitHub/CO2-effects-on-geophytes/Data/Oxalis_stomatal_traits.csv",
   delim = ";",
   escape_double = FALSE,
   trim_ws = TRUE
@@ -46,9 +46,7 @@ stomatal_plot <-
          aes(
            x = density,
            y = conductance,
-           size = size,
-           colour = CO2
-         )) +
+           size = size)) +
   facet_wrap( ~ Nutrients) +
   geom_point(alpha = 0.5) +
   scale_size(range = c(1, 15), name = expression(Stomata ~ size ~  ~ (mu ~
@@ -67,7 +65,7 @@ stomatal_plot <-
     size = 3
   ) +
   labs(x = expression(Stomatal ~ density ~  ~ (mm ^ -2)),
-       y = expression(Stomatal ~ conductance ~  ~ (mu ~ mol ~ m ^ -2 ~ s ^ -1))) +
+       y = expression(Stomatal ~ conductance ~  ~ (mol ~ m ^ -2 ~ s ^ -1))) +
   themed
 
 #stomatal_plot <- stomatal_plot + scale_shape_manual(values = c(3, 16, 8)) +

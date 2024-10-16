@@ -3,7 +3,7 @@ library(dplyr)
 library(tidyverse)
 library(readxl)
 
-sites <- read_excel("C:/Users/User/Documents/GitHub/CO2-effects-on-geophytes/Data/Foraging sites.xlsx", 
+sites <- read_excel("Data/Foraging sites.xlsx", 
                     col_types = c("text", "numeric", "numeric"))
 View(sites)
 
